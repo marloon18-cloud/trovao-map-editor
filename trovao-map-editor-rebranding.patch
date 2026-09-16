@@ -1,0 +1,86 @@
+diff --git a/data/menubar.xml b/data/menubar.xml
+index b4f5fb7..da63f46 100644
+--- a/data/menubar.xml
++++ b/data/menubar.xml
+@@ -193,5 +193,7 @@
+         <item name="$Extensions..." hotkey="F2" action="EXTENSIONS" help=""/>
+         <item name="Goto $Website" hotkey="F3" action="GOTO_WEBSITE" help=""/>
+         <item name="$About..." hotkey="F1" action="ABOUT" help=""/>
++        <separator/>
++        <item name="Trovão - Teste" action="TROVAO_TEST" help="Feature de teste do Trovão Map Editor"/>
+     </menu>
+ </menubar>
+diff --git a/source/about_window.cpp b/source/about_window.cpp
+index 2fcd0d0..badef0d 100644
+--- a/source/about_window.cpp
++++ b/source/about_window.cpp
+@@ -180,7 +180,7 @@ AboutWindow::AboutWindow(wxWindow* parent) :
+ 	compiler = "unknown";
+ #endif
+ 
+-	about << "This is an OpenTibia Map Editor created by Remere.\n";
++	about << "This is Trovão Map Editor, an OpenTibia Map Editor based on Remere's Map Editor (created by Remere).\n";
+ 	about << "Version " << __W_RME_VERSION__ << " for ";
+ 	about 
+ #ifdef __WINDOWS__
+diff --git a/source/definitions.h b/source/definitions.h
+index 69afe26..12a4f88 100644
+--- a/source/definitions.h
++++ b/source/definitions.h
+@@ -18,7 +18,7 @@
+ #ifndef RME_DEFINITIONS_H_
+ #define RME_DEFINITIONS_H_
+ 
+-#define __W_RME_APPLICATION_NAME__ wxString("Remere's Map Editor")
++#define __W_RME_APPLICATION_NAME__ wxString("Trovão Map Editor")
+ 
+ // Version info
+ // xxyyzzt (major, minor, subversion)
+diff --git a/source/main_menubar.cpp b/source/main_menubar.cpp
+index 589969a..bbf6981 100644
+--- a/source/main_menubar.cpp
++++ b/source/main_menubar.cpp
+@@ -194,6 +194,7 @@ MainMenuBar::MainMenuBar(MainFrame *frame) : frame(frame)
+ 	MAKE_ACTION(EXTENSIONS, wxITEM_NORMAL, OnListExtensions);
+ 	MAKE_ACTION(GOTO_WEBSITE, wxITEM_NORMAL, OnGotoWebsite);
+ 	MAKE_ACTION(ABOUT, wxITEM_NORMAL, OnAbout);
++	MAKE_ACTION(TROVAO_TEST, wxITEM_NORMAL, OnTrovaoTest);
+ 
+ 	// A deleter, this way the frame does not need
+ 	// to bother deleting us.
+@@ -853,6 +854,15 @@ void MainMenuBar::OnAbout(wxCommandEvent& WXUNUSED(event))
+ 	about.ShowModal();
+ }
+ 
++void MainMenuBar::OnTrovaoTest(wxCommandEvent& WXUNUSED(event))
++{
++	// Prova de conceito: primeira feature customizada do Trovão Map Editor.
++	// A partir daqui o ciclo código -> build -> teste está validado.
++	wxMessageBox(
++		"Trovão Map Editor está pronto para novas funcionalidades!",
++		"Trovão - Teste", wxOK | wxICON_INFORMATION, frame);
++}
++
+ void MainMenuBar::OnUndo(wxCommandEvent& WXUNUSED(event))
+ {
+ 	g_gui.DoUndo();
+diff --git a/source/main_menubar.h b/source/main_menubar.h
+index 4e584a6..3f05c34 100644
+--- a/source/main_menubar.h
++++ b/source/main_menubar.h
+@@ -154,6 +154,7 @@ namespace MenuBar
+ 		EXTENSIONS,
+ 		GOTO_WEBSITE,
+ 		ABOUT,
++		TROVAO_TEST,
+ 	};
+ }
+ 
+@@ -289,6 +290,7 @@ public:
+ 	void OnListExtensions(wxCommandEvent& event);
+ 	void OnGotoWebsite(wxCommandEvent& event);
+ 	void OnAbout(wxCommandEvent& event);
++	void OnTrovaoTest(wxCommandEvent& event);
+ 
+ protected:
+ 	// Load and returns a menu item, also sets accelerator
