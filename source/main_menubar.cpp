@@ -194,6 +194,7 @@ MainMenuBar::MainMenuBar(MainFrame *frame) : frame(frame)
 	MAKE_ACTION(EXTENSIONS, wxITEM_NORMAL, OnListExtensions);
 	MAKE_ACTION(GOTO_WEBSITE, wxITEM_NORMAL, OnGotoWebsite);
 	MAKE_ACTION(ABOUT, wxITEM_NORMAL, OnAbout);
+	MAKE_ACTION(TROVAO_TEST, wxITEM_NORMAL, OnTrovaoTest);
 
 	// A deleter, this way the frame does not need
 	// to bother deleting us.
@@ -851,6 +852,13 @@ void MainMenuBar::OnAbout(wxCommandEvent& WXUNUSED(event))
 {
 	AboutWindow about(frame);
 	about.ShowModal();
+}
+
+void MainMenuBar::OnTrovaoTest(wxCommandEvent& WXUNUSED(event))
+{
+	wxMessageBox(
+		"Trovão Map Editor está pronto para novas funcionalidades!",
+		"Trovão - Teste", wxOK | wxICON_INFORMATION, frame);
 }
 
 void MainMenuBar::OnUndo(wxCommandEvent& WXUNUSED(event))

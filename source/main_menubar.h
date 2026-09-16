@@ -154,6 +154,7 @@ namespace MenuBar
 		EXTENSIONS,
 		GOTO_WEBSITE,
 		ABOUT,
+		TROVAO_TEST,
 	};
 }
 
@@ -289,6 +290,7 @@ public:
 	void OnListExtensions(wxCommandEvent& event);
 	void OnGotoWebsite(wxCommandEvent& event);
 	void OnAbout(wxCommandEvent& event);
+	void OnTrovaoTest(wxCommandEvent& event);
 
 protected:
 	// Load and returns a menu item, also sets accelerator

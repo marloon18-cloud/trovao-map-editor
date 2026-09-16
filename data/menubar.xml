@@ -193,5 +193,7 @@
         <item name="$Extensions..." hotkey="F2" action="EXTENSIONS" help=""/>
         <item name="Goto $Website" hotkey="F3" action="GOTO_WEBSITE" help=""/>
         <item name="$About..." hotkey="F1" action="ABOUT" help=""/>
+        <separator/>
+        <item name="Trovão - Teste" action="TROVAO_TEST" help="Feature de teste do Trovão Map Editor"/>
     </menu>
 </menubar>
